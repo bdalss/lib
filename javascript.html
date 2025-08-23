@@ -1,0 +1,63 @@
+<script>
+    window.addEventListener('load', function() {
+        const panzoomContainer = document.getElementById('seat-map-container');
+        
+        if (panzoomContainer) {
+            const panzoom = Panzoom(panzoomContainer, {
+                maxScale: 5,
+                minScale: 0.1,
+                contain: 'outside',
+                transformOrigin: { x: 0.5, y: 0.5 }
+            });
+            panzoomContainer.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
+        } else {
+            console.error('Error: Element with ID "seat-map-container" not found.');
+            document.getElementById('status-message').textContent = 'エラー: マップ要素が見つかりません。';
+        }
+
+        updateMap();
+    });
+
+    setInterval(updateMap, 60000);
+
+    function updateMap() {
+        document.getElementById('status-message').textContent = 'データを更新中...';
+        google.script.run
+            .withSuccessHandler(onUpdateSuccess)
+            .withFailureHandler(onFailure)
+            .getSeatData();
+    }
+
+    function onUpdateSuccess(statusData) {
+        if (statusData && statusData.error) {
+            onFailure({message: statusData.error});
+            return;
+        }
+        
+        statusData.forEach(function(seat) {
+            const seatId = seat[0];
+            const status = parseInt(seat[1], 10);
+            const seatElement = document.getElementById(seatId);
+            
+            if (seatElement) {
+                seatElement.style.fill = getColorForStatus(status);
+            }
+        });
+        document.getElementById('status-message').textContent = '最終更新: ' + new Date().toLocaleTimeString();
+    }
+
+    function onFailure(error) {
+        const statusMessage = document.getElementById('status-message');
+        statusMessage.textContent = 'エラー: ' + error.message;
+        statusMessage.style.color = 'red';
+    }
+
+    function getColorForStatus(status) {
+        switch (status) {
+            case 0: return '#4CAF50';
+            case 1: return '#F44336';
+            case 2: return '#FFEB3B';
+            default: return '#E0E0E0';
+        }
+    }
+</script>
