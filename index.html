@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <style>
+        body { font-family: sans-serif; text-align: center; }
+        h1 { margin-top: 10px; }
+
+        /* SVGを囲む親ラッパー（コンテナのサイズと枠線を管理） */
+        .svg-wrapper {
+            width: 400px;
+            max-width: 100%;
+            margin: 15px auto;
+            border: 1px solid #ccc;
+        }
+
+        /* SVGコンテナ本体（ここで縦横比を固定） */
+        #seat-map-container {
+            width: 100%;
+            height: 0;
+            padding-bottom: 118.5%; /* 縦横比 (高さ640 / 幅540) */
+            position: relative;
+            cursor: grab;
+        }
+        
+        /* SVGエディタから貼り付けたSVG自体へのスタイル */
+        #seat-map-container > svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .legend { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
+        .legend-item { display: flex; align-items: center; }
+        .legend-color { width: 20px; height: 20px; border: 1px solid #333; margin-right: 8px; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+</head>
+<body>
+    <h1>自習室 空席状況</h1>
+
+    <div class="svg-wrapper">
+        <div id="seat-map-container">
+            <svg
+               version="1.1"
+               viewBox="0 0 540 640"
+               sodipodi:docname="sample map.svg"
+               xml:space="preserve"
+               inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+               xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+               xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+               xmlns:xlink="http://www.w3.org/1999/xlink"
+               xmlns="http://www.w3.org/2000/svg"
+               xmlns:svg="http://www.w3.org/2000/svg"><defs
+                 id="defs1" /><sodipodi:namedview
+                 id="namedview1"
+                 pagecolor="#ffffff"
+                 bordercolor="#000000"
+                 borderopacity="0.25"
+                 inkscape:showpageshadow="2"
+                 inkscape:pageopacity="0.0"
+                 inkscape:pagecheckerboard="0"
+                 inkscape:deskcolor="#d1d1d1"
+                 inkscape:zoom="1.0122103"
+                 inkscape:cx="313.17603"
+                 inkscape:cy="345.28398"
+                 inkscape:window-width="1920"
+                 inkscape:window-height="1111"
+                 inkscape:window-x="-9"
+                 inkscape:window-y="-9"
+                 inkscape:window-maximized="1"
+                 inkscape:current-layer="svg1" /><g
+                 id="g2"
+                 transform="matrix(0.94350353,0,0,0.97631338,-168.2443,79.551991)"><image
+                   width="572.3349"
+                   height="655.52722"
+                   preserveAspectRatio="xMidYMid"
+                   xlink:href="https://raw.githubusercontent.com/bdalss/lib/refs/heads/main/classroom_map.png"
+                   id="image1"
+                   x="178.31868"
+                   y="-81.482025" /><g
+                   inkscape:groupmode="layer"
+                   inkscape:label="Image"
+                   id="g1"
+                   style="opacity:1"><a
+                     id="a2"
+                     transform="matrix(0.77440777,0,0,1.340156,81.264752,-252.26305)"
+                     inkscape:label="A"><rect
+                       style="fill:#000000"
+                       id="A-1"
+                       width="117.36093"
+                       height="65.666237"
+                       x="221.44891"
+                       y="230"
+                       inkscape:label="A-1" /><rect
+                       style="fill:#000000"
+                       id="A-2"
+                       width="117.36093"
+                       height="65.666237"
+                       x="352.29303"
+                       y="229.2381"
+                       inkscape:label="A-2" /><rect
+                       style="fill:#000000"
+                       id="A-3"
+                       width="117.36093"
+                       height="65.666237"
+                       x="490.09085"
+                       y="229.24699"
+                       inkscape:label="A-3" /><rect
+                       style="fill:#000000"
+                       id="A-4"
+                       width="117.36093"
+                       height="65.666237"
+                       x="627.29517"
+                       y="230.00279"
+                       inkscape:label="A-4" /></a><a
+                     id="a2-1"
+                     transform="matrix(0.77440777,0,0,1.340156,81.49863,-146.96271)"
+                     inkscape:label="B"><rect
+                       style="fill:#000000"
+                       id="B-1"
+                       width="117.36093"
+                       height="65.666237"
+                       x="221.44891"
+                       y="230"
+                       inkscape:label="B-1" /><rect
+                       style="fill:#000000"
+                       id="B-2"
+                       width="117.36093"
+                       height="65.666237"
+                       x="352.29303"
+                       y="229.2381"
+                       inkscape:label="B-2" /><rect
+                       style="fill:#000000"
+                       id="B-3"
+                       width="117.36093"
+                       height="65.666237"
+                       x="490.09085"
+                       y="229.24699"
+                       inkscape:label="B-3" /><rect
+                       style="fill:#000000"
+                       id="B-4"
+                       width="117.36093"
+                       height="65.666237"
+                       x="627.29517"
+                       y="230.00279"
+                       inkscape:label="B-4" /></a><a
+                     id="a2-7"
+                     transform="matrix(0.77440777,0,0,1.340156,82.210345,-44.2281)"
+                     inkscape:label="C"><rect
+                       style="fill:#000000"
+                       id="C-1"
+                       width="117.36093"
+                       height="65.666237"
+                       x="221.44891"
+                       y="230"
+                       inkscape:label="C-1" /><rect
+                       style="fill:#000000"
+                       id="C-2"
+                       width="117.36093"
+                       height="65.666237"
+                       x="352.29303"
+                       y="229.2381"
+                       inkscape:label="C-2" /><rect
+                       style="fill:#000000"
+                       id="C-3"
+                       width="117.36093"
+                       height="65.666237"
+                       x="490.09085"
+                       y="229.24699"
+                       inkscape:label="C-3" /><rect
+                       style="fill:#000000"
+                       id="C-4"
+                       width="117.36093"
+                       height="65.666237"
+                       x="627.29517"
+                       y="230.00279"
+                       inkscape:label="C-4" /></a><a
+                     id="a2-8"
+                     transform="matrix(0.77440777,0,0,1.340156,80.796527,61.121727)"
+                     inkscape:label="D"><rect
+                       style="fill:#000000"
+                       id="D-1"
+                       width="117.36093"
+                       height="65.666237"
+                       x="221.44891"
+                       y="230"
+                       inkscape:label="D-1" /><rect
+                       style="fill:#000000"
+                       id="D-2"
+                       width="117.36093"
+                       height="65.666237"
+                       x="352.29303"
+                       y="229.2381"
+                       inkscape:label="D-2" /><rect
+                       style="fill:#000000"
+                       id="D-3"
+                       width="117.36093"
+                       height="65.666237"
+                       x="490.09085"
+                       y="229.24699"
+                       inkscape:label="D-3" /><rect
+                       style="fill:#000000"
+                       id="D-4"
+                       width="117.36093"
+                       height="65.666237"
+                       x="627.29517"
+                       y="230.00279"
+                       inkscape:label="D-4" /></a></g></g>
+            </svg>
+        </div>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item"><div class="legend-color" style="background-color: #4CAF50;"></div><span>空席</span></div>
+        <div class="legend-item"><div class="legend-color" style="background-color: #F44336;"></div><span>利用中</span></div>
+        <div class="legend-item"><div class="legend-color" style="background-color: #FFEB3B;"></div><span>一時離席</span></div>
+    </div>
+    
+    <p id="status-message">データを読み込み中...</p>
+
+    <?!= HtmlService.createHtmlOutputFromFile('javascript').getContent(); ?>
+</body>
+</html>
